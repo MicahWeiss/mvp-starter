@@ -18,12 +18,16 @@ var selectAll = function(callback) {
 };
 
 var updateStatus = function(status, id, callback){
-  let sqlThing = 'UPDATE Tasks SET status = '+ status +' WHERE id = '+ id;
+  let sqlThing = 'UPDATE Tasks SET status = \"'+ status +'\" WHERE id = '+ id;
+  console.log('updateStatus called in at DB Index');
+  console.log('query: ', sqlThing);
+  
   connection.query(sqlThing, function(err, results, fields){
     if(err){
       console.error('Error in update status');
       callback(err, null);
     } else {
+      console.log('query successful')
       callback(null, results);
     }
   });

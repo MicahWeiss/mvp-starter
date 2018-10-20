@@ -9,7 +9,7 @@ class App extends React.Component {
     this.state = { 
       tasks: []
     }
-    this.updateStatus.bind(this);
+    this.updateStatus = this.updateStatus.bind(this);
   }
 
   componentDidMount() { //hits up server for 
@@ -35,6 +35,16 @@ class App extends React.Component {
       data: payload,
       success: (data) => {
         console.log('Response from server: ', data);
+        console.log('state:', this.state);
+        for(let i = 0; i< this.state.tasks.length; i++){
+          console.log('comparing state id',this.state.tasks[i].ID, 'to', payload.id)
+          if(this.state.tasks[i].ID === payload.id){
+            console.log('id match found in state');
+            let tempState = this.state;
+            tempState.tasks[i].status = payload.status; //bad, but I want it
+            this.setState(tempState, ()=>{console.log('state set')});
+          }
+        }
       },
       error: (err) => {
         console.log('err', err);

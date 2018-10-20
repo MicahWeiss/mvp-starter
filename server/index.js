@@ -30,10 +30,10 @@ app.get('/api/tasks', function (req, res) {
 app.patch('/api/status', function (req, res) {
   //takes a task id and a new status
   console.log('PATCH to /api/status');
-  console.log('Status:', req.body.status, 'ID:', req.body.id);
-  tasks.updateStatus(req.body.status, req.body.id)
-  res.send('PATCHED HOMIE');
-
+  //console.log('Status:', req.body.status, 'ID:', req.body.id);
+  
+  let cb = () => {res.send('PATCHED HOMIE')};
+  tasks.updateStatus(req.body.status, req.body.id, cb)
 });
 
 
