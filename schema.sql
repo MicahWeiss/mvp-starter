@@ -4,12 +4,16 @@ CREATE DATABASE test;
 
 USE test;
 
-CREATE TABLE items (
-  id int NOT NULL AUTO_INCREMENT,
-  quantity integer NOT NULL,
-  description varchar(50) NOT NULL,
+CREATE TABLE Tasks (
+  ID INTEGER NOT NULL AUTO_INCREMENT,
+  taskName varchar(255) NOT NULL,
+  points INTEGER,
+  description varchar(255) NOT NULL,
+  status varchar(255) NOT NULL,
   PRIMARY KEY (ID)
 );
+
+INSERT INTO Tasks (taskName, points, description, status) VALUES ( "RETRIBUTION", 25, "Slay 30 rival ninja for our Daimyo", "Complete"); 
 
 /*  Execute this file from the command line by typing:
  *    mysql -u root < server/schema.sql

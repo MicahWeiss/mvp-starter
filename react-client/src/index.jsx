@@ -7,16 +7,17 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      items: []
+      tasks: []
     }
+    this.updateStatus.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount() { //hits up server for 
     $.ajax({
-      url: '/items', 
+      url: '/api/tasks', 
       success: (data) => {
         this.setState({
-          items: data
+          tasks: data
         })
       },
       error: (err) => {
@@ -25,10 +26,27 @@ class App extends React.Component {
     });
   }
 
+  //updateStatus
+  updateStatus(payload){
+    console.log('update status triggered');
+    $.ajax({
+      url: '/api/status',
+      method: "PATCH",
+      data: payload,
+      success: (data) => {
+        console.log('Updated status: ', data);
+      },
+      error: (err) => {
+        console.log('err', err);
+      }
+    })
+
+  }
+
   render () {
     return (<div>
-      <h1>Item List</h1>
-      <List items={this.state.items}/>
+      <h1>Task List</h1>
+      <List tasks = {this.state.tasks} updateStatus = {this.updateStatus}/>
     </div>)
   }
 }
