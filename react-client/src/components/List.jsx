@@ -10,7 +10,7 @@ const List = (props) =>{
   return (
     <div>
       <h3> Greetings, Ninja SampleUser! </h3>
-      There are { props.tasks.length } items. Your score is {score}.
+      There are { props.tasks.length } quests. Your score is {score}.
       { props.tasks.map((task, i) => 
       <ListItem task={task} key={i} updateStatus ={props.updateStatus}/>)}
     </div>

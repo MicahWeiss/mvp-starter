@@ -28,13 +28,13 @@ class App extends React.Component {
 
   //updateStatus
   updateStatus(payload){
-    console.log('update status triggered');
+    console.log('Sending patch request');
     $.ajax({
       url: '/api/status',
       method: "PATCH",
       data: payload,
       success: (data) => {
-        console.log('Updated status: ', data);
+        console.log('Response from server: ', data);
       },
       error: (err) => {
         console.log('err', err);
